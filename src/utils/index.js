@@ -6,7 +6,7 @@ export const colors = {
 export const theme = Object.freeze({
   colors: {
     background: '#3f4448',
-    danger: '#dc3545',
+    danger: '#fd4758',
     dangerLighter: '#f8d7da',
     dark: '#343a40',
     darkLighter: '#d6d8d9',

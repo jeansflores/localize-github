@@ -45,4 +45,15 @@ export default createGlobalStyle`
   ::-ms-input-placeholder { /* Microsoft Edge */
     color: #999;
   }
+
+  @keyframes shake {
+    0% { margin-left: 0rem; }
+    25% { margin-left: 0.5rem; }
+    75% { margin-left: -0.5rem; }
+    100% { margin-left: 0rem; }
+  }
+
+  input:-internal-autofill-selected {
+    background-color: transparent !important;
+  }
 `;
