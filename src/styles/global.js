@@ -15,7 +15,7 @@ export default createGlobalStyle`
 
   body {
     -webkit-font-smoothing: antialiased !important;
-    background-color: #24292e;
+    background: url('/assets/svg/simple-codelines.svg'), #2b3137;
   }
 
   #root {
@@ -31,5 +31,18 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+  }
+
+  ::placeholder {
+  color: #999;
+  opacity: 1; /* Firefox */
+}
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #999;
+  }
+
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #999;
   }
 `;

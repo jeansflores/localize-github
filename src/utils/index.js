@@ -1,7 +1,7 @@
 export const colors = {
   black: '#000000',
   white: '#ffffff',
-}
+};
 
 export const theme = Object.freeze({
   colors: {
@@ -22,4 +22,4 @@ export const theme = Object.freeze({
     warning: '#ffc107',
     warningLighter: '#fff3cd',
   },
-})
+});
