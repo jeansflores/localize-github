@@ -50,8 +50,8 @@ Após a inicialização do servidor, estará disponível a aplicação na url ht
 
 ## Melhorias Futuras
 
-[ ] Scroll infinito na listagem de repositórios (otimizar a busca de 10 em 10);
-[ ] Multilinguagem (i18n).
+ - Scroll infinito na listagem de repositórios (paginando a busca);
+ - Multilinguagem (i18n).
 
 [nodejs]: https://nodejs.org/!
 [yarn]: https://yarnpkg.com/
