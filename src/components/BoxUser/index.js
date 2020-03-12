@@ -98,7 +98,7 @@ const BoxUser = ({ user, handleClose }) => {
         </Statistics>
 
         {user.public_repos > 0 && (
-          <Repositories loading={loading}>
+          <Repositories className="repositories" loading={loading}>
             {loading && <FaSpinner color="#222" size={20} />}
             {repositories.length > 0 && (
               <>
