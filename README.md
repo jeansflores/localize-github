@@ -1,4 +1,4 @@
-# Localize Github
+# Localize Github [![Codeship Status for jeansflores/localize-github](https://app.codeship.com/projects/abcfef80-46a2-0138-d650-6a85b0ed560b/status?branch=master)](https://app.codeship.com/projects/388652)
 
 Este projeto é um client-side para a API do GitHub, com ela é possível buscar usuários cadastrados no Github, podendo visualizar detalhes e repositórios de mesmo.
 
