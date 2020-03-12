@@ -6,17 +6,17 @@ const fadeInAnimation = keyframes`${fadeIn}`;
 const Backdrop = styled.div`
   align-items: center;
   animation: 0.3s ${fadeInAnimation};
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   bottom: 0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   justify-content: center;
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
   z-index: 1071;
+  overflow: auto;
 `;
 
 export default Backdrop;

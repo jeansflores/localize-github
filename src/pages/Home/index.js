@@ -1,26 +1,25 @@
+import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import { FaAt, FaSpinner } from 'react-icons/fa';
 import * as Yup from 'yup';
-import { useFormik } from 'formik';
-import logo from '../../assets/image/logo.png';
 
+import logo from '../../assets/image/logo.png';
+import BoxUser from '../../components/BoxUser';
+import api from '../../services/api';
+import { theme } from '../../utils';
 import {
+  Logo,
   SearchBar,
-  SearchGroupInput,
-  SearchInput,
   SearchButton,
   SearchContainer,
+  SearchGroupInput,
   SearchInfo,
   SearchInfoError,
-  Logo,
+  SearchInput,
 } from './styles';
-import { theme } from '../../utils';
-import api from '../../services/api';
-import Backdrop from '../../components/Backdrop';
-import BoxUser from '../../components/BoxUser';
 
 const Home = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
@@ -44,7 +43,10 @@ const Home = () => {
           setLoading(false);
 
           if (error.response.status === 404) {
-            formik.setFieldError('username', 'Digite um @username válido!');
+            formik.setFieldError(
+              'username',
+              'Usuário não encontrado, tente outro!'
+            );
             formik.setFieldTouched('username', true);
           }
         });
@@ -83,11 +85,13 @@ const Home = () => {
         ) : null}
       </form>
 
-      {user.login && (
-        <Backdrop>
-          <BoxUser user={user} />
-        </Backdrop>
-      )}
+      <BoxUser
+        user={user}
+        handleClose={() => {
+          formik.resetForm();
+          setUser(null);
+        }}
+      />
     </SearchContainer>
   );
 };
