@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaSpinner, FaStar } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
 import avatarGithub from '../../assets/image/avatar.jpg';
 import api from '../../services/api';
@@ -39,7 +40,7 @@ const BoxUser = ({ user, handleClose }) => {
           );
           setLoading(false);
         })
-        .catch(error => {
+        .catch(() => {
           setLoading(false);
         });
     }
@@ -122,6 +123,22 @@ const BoxUser = ({ user, handleClose }) => {
       </Box>
     </Backdrop>
   );
+};
+
+BoxUser.propTypes = {
+  user: PropTypes.shape({
+    avatar_url: PropTypes.string,
+    bio: PropTypes.string,
+    email: PropTypes.string,
+    followers: PropTypes.number,
+    following: PropTypes.number,
+    html_url: PropTypes.string,
+    login: PropTypes.string,
+    name: PropTypes.string,
+    public_repos: PropTypes.number,
+    stargazers_count: PropTypes.number,
+  }).isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default BoxUser;
