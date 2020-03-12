@@ -28,7 +28,7 @@ Para incializar este projeto você precisará no seu computador os seguintes ite
 
 ## Primeiros Passos
 
-Se você já possui os pré-requisitos instalados no seu computador, basta apenas clonar, instalar as dependências e "executar" do projeto.
+Se você já possui os pré-requisitos instalados no seu computador, basta apenas clonar, instalar as dependências e "executar" o projeto.
 
 Siga os passos abaixo no seu terminal:
 
