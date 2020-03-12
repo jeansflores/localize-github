@@ -22,6 +22,7 @@ import {
   Statistics,
 } from './styles';
 
+// Card de detalhes do usuário
 const BoxUser = ({ user, handleClose }) => {
   const [repositories, setRepositories] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -30,6 +31,7 @@ const BoxUser = ({ user, handleClose }) => {
     if (user && user.public_repos > 0) {
       setLoading(true);
 
+      // Busca dos repositórios do usuário
       api
         .get(`/users/${user.login}/repos`)
         .then(response => {
@@ -46,6 +48,7 @@ const BoxUser = ({ user, handleClose }) => {
     }
   }, [user]);
 
+  // Verifica se existe um usuário, caso não exista não retorna o componente
   if (!user) {
     return null;
   }
