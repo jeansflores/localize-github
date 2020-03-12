@@ -1,23 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { FaSpinner, FaStar } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
-import avatarGithub from '../../assets/image/avatar.jpg';
 
+import avatarGithub from '../../assets/image/avatar.jpg';
+import api from '../../services/api';
+import Backdrop from '../Backdrop';
 import {
-  Box,
   Apresentation,
   Avatar,
   Bio,
-  Statistics,
+  Box,
+  CountStar,
+  Details,
+  Repositories,
+  RepositoriesList,
+  Repository,
   Statistic,
   StatisticInfo,
   StatisticLabel,
-  Details,
-  Repositories,
+  Statistics,
 } from './styles';
-import Backdrop from '../Backdrop';
 
 const BoxUser = ({ user, handleClose }) => {
-  if (!user) return null;
+  const [repositories, setRepositories] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (user && user.public_repos > 0) {
+      setLoading(true);
+
+      api
+        .get(`/users/${user.login}/repos`)
+        .then(response => {
+          setRepositories(
+            response.data.sort((a, b) => {
+              return b.stargazers_count - a.stargazers_count;
+            })
+          );
+          setLoading(false);
+        })
+        .catch(error => {
+          setLoading(false);
+        });
+    }
+  }, [user]);
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <Backdrop>
@@ -27,7 +57,12 @@ const BoxUser = ({ user, handleClose }) => {
             <a href={user.html_url}>{user.name || user.login}</a>
           </span>
           <small>{`@${user.login}`}</small>
-          <MdClose onClick={handleClose} />
+          <MdClose
+            onClick={() => {
+              setRepositories([]);
+              handleClose();
+            }}
+          />
         </Apresentation>
 
         <Avatar>
@@ -60,6 +95,30 @@ const BoxUser = ({ user, handleClose }) => {
             <StatisticLabel>Repositórios</StatisticLabel>
           </Statistic>
         </Statistics>
+
+        {user.public_repos > 0 && (
+          <Repositories loading={loading}>
+            {loading && <FaSpinner color="#222" size={20} />}
+            {repositories.length > 0 && (
+              <>
+                <h4>Repositórios</h4>
+                <RepositoriesList>
+                  {repositories.map(repo => (
+                    <Repository key={repo.id}>
+                      <span>
+                        <a href={repo.html_url}>{repo.name}</a>
+                      </span>
+                      <CountStar>
+                        <FaStar color="#555" />
+                        {repo.stargazers_count}
+                      </CountStar>
+                    </Repository>
+                  ))}
+                </RepositoriesList>
+              </>
+            )}
+          </Repositories>
+        )}
       </Box>
     </Backdrop>
   );

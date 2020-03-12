@@ -1,18 +1,28 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { flipInY } from 'react-animations';
 
 import { theme } from '../../utils';
 
 const flipInYAnimation = keyframes`${flipInY}`;
 
+const rotateAnimation = keyframes`
+  from {
+    transform: rotate(0deg)
+  }
+
+  to {
+    transform: rotate(360deg)
+  }
+`;
+
 export const Box = styled.div`
+  animation: 0.6s ${flipInYAnimation};
+  background: ${theme.colors.light};
+  border-radius: 22px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 50px 50px 50px 50px;
-  animation: 0.6s ${flipInYAnimation};
-  background: ${theme.colors.light};
-  border-radius: 22px;
 
   @media (max-width: 576px) {
     width: 90%;
@@ -28,16 +38,16 @@ export const Box = styled.div`
 `;
 
 export const Apresentation = styled.div`
-  display: flex;
-  flex-direction: column;
+  align-items: center;
   background: ${theme.colors.dark};
-  height: 120px;
-  width: 100%;
-  color: #fff;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  align-items: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 120px;
   padding: 12px;
+  width: 100%;
 
   svg {
     position: relative;
@@ -67,18 +77,18 @@ export const Apresentation = styled.div`
 `;
 
 export const Avatar = styled.div`
-  margin-bottom: -38px;
+  align-items: center;
   align-self: center;
   background: ${theme.colors.light};
   border-radius: 100%;
   box-shadow: 0 0 0.5em #222;
   display: flex;
   height: 105px;
+  justify-content: center;
+  margin-bottom: -38px;
   position: relative;
   top: -50px;
   width: 105px;
-  align-items: center;
-  justify-content: center;
 
   img {
     float: left;
@@ -91,8 +101,8 @@ export const Avatar = styled.div`
 
 export const Details = styled.div`
   background: ${theme.colors.light};
-  width: 100%;
   padding: 10px;
+  width: 100%;
 
   p {
     color: #555;
@@ -102,8 +112,8 @@ export const Details = styled.div`
 
 export const Bio = styled.div`
   background: ${theme.colors.light};
-  width: 100%;
   padding: 10px;
+  width: 100%;
 
   p {
     color: #555;
@@ -113,11 +123,11 @@ export const Bio = styled.div`
 
 export const Statistics = styled.section`
   background: ${theme.colors.light};
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   display: grid;
   grid-template-columns: 33% 33% 33%;
   padding: 10px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
 
   div:nth-child(2) {
     border-left: #ddd 1px solid;
@@ -135,9 +145,9 @@ export const Statistics = styled.section`
 `;
 
 export const Statistic = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 10px 0;
 `;
 
@@ -149,17 +159,79 @@ export const StatisticInfo = styled.h5`
 `;
 
 export const StatisticLabel = styled.span`
-  text-transform: uppercase;
+  color: #212529;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  text-transform: uppercase;
 `;
 
-export const Repositories = styled.div`
+export const Repositories = styled.div.attrs(props => ({}))`
+  align-items: center;
   background: ${theme.colors.light};
-  height: 120px;
-  width: 100%;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  border-top: #ddd 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+
+  h4 {
+    color: #444;
+  }
+
+  ${props => {
+    return (
+      props.loading &&
+      css`
+        svg {
+          animation: ${rotateAnimation} 2s linear infinite;
+        }
+      `
+    );
+  }}
+`;
+
+export const RepositoriesList = styled.div`
+  align-items: center;
+  background: ${theme.colors.light};
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 0px 10px 10px 10px;
+  width: 100%;
+`;
+
+export const Repository = styled.div`
+  background: ${theme.colors.light};
+  border-radius: 8px;
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 4px;
+  padding: 10px;
+  width: 100%;
+
+  span {
+    color: #444;
+    font-weight: bold;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+`;
+
+export const CountStar = styled.div`
+  display: flex;
+
+  svg {
+    margin-right: 7px;
+  }
 `;

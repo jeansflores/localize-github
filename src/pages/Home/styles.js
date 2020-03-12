@@ -71,7 +71,6 @@ export const SearchButton = styled.button.attrs(props => ({
   background: ${colors.white};
   border-radius: 22px;
   border: none;
-  border: none;
   color: ${theme.colors.dark};
   font-size: 1rem;
   height: 42px;
