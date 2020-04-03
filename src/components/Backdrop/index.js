@@ -18,4 +18,5 @@ const Backdrop = styled.div`
   overflow: auto;
 `;
 
+// Plano de fundo para modal
 export default Backdrop;

@@ -33,6 +33,8 @@ const Home = () => {
     }),
     onSubmit: ({ username }) => {
       setLoading(true);
+
+      // Busca do usuário inserida no form
       api
         .get(`/users/${username}`)
         .then(response => {
